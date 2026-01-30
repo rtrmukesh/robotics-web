@@ -4,13 +4,34 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "build": "NODE_ENV=production && npx prisma generate && npm run applyMigrations && next build",
+    "start": "NODE_ENV=production && next start",
+    "lint": "eslint",
+    "supabase:init": "npx supabase init",
+    "supabase:login": "npx supabase login",
+    "migration:new": "npx supabase migration new",
+    "migration:push:local": "npx supabase db push",
+    "migration:push:prod": "SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY npx supabase db push",
+    "syncDb": "npx prisma db push && npx prisma generate",
+    "resetDb": "npx prisma migrate reset --force && npx prisma generate",
+    "createNewMigration": "npx prisma migrate dev --name",
+    "applyMigrations": "npx prisma migrate deploy",
+    "generatePrismaClient": "npx prisma generate",
+    "prismaStudio": "npx prisma studio"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.1.0",
+    "@fortawesome/free-solid-svg-icons": "^7.1.0",
+    "@fortawesome/react-fontawesome": "^3.1.1",
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.2.0",
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.93.3",
+    "dotenv": "^17.2.3",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.563.0",
     "next": "16.1.4",
+    "pg": "^8.17.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "swiper": "^12.1.0"
@@ -22,6 +43,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.4",
+    "prisma": "^7.2.0",
+    "supabase": "^2.72.9",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
