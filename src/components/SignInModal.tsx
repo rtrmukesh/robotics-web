@@ -12,10 +12,11 @@ export default function SignInModal({ open, onClose }: SignInModalProps) {
   if (!open) return null;
 
   const handleGoogleSignIn = async () => {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-         redirectTo: "https://robotics-books-web.vercel.app/",
+         redirectTo: `${siteUrl}/api/auth/callback`,
       },
     });
 
