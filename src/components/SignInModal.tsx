@@ -15,7 +15,7 @@ export default function SignInModal({ open, onClose }: SignInModalProps) {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.origin,
+         redirectTo: "https://robotics-books-web.vercel.app/",
       },
     });
 
