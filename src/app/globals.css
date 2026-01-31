@@ -35,3 +35,22 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.3s ease forwards;
 }
+
+
+@layer base {
+  * {
+    @apply border-gray-300;
+  }
+
+  .dark * {
+    @apply border-gray-600;
+  }
+
+  body {
+    @apply text-gray-900 bg-white;
+  }
+
+  .dark body {
+    @apply text-gray-100 bg-gray-900;
+  }
+}
