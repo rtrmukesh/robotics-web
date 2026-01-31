@@ -1,4 +1,3 @@
-// app/admin/books/page.tsx
 "use client";
 
 import { useState } from "react";
